@@ -1,8 +1,8 @@
 version: "3.8"
 services:
-  anythink-backend:
+  anythink-backend-python:
     build: ./backend
-    container_name: anythink-backend
+    container_name: anythink-backend-python
     command: >
       sh -c "cd backend &&
             poetry install &&
@@ -22,9 +22,9 @@ services:
       - DATABASE_URL=postgresql://postgres:@postgres-python:5432/anythink-market
     depends_on:
       - "postgres-python"
-  anythink-frontend:
+  anythink-frontend-react:
     build: ./frontend
-    container_name: anythink-frontend
+    container_name: anythink-frontend-react
     command: sh -c "cd frontend && yarn install && yarn start"
     environment:
       - NODE_ENV=development
