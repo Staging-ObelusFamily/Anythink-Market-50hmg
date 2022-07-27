@@ -1,8 +1,8 @@
 version: "3.8"
 services:
-  anythink-backend:
+  anythink-backend-python:
     build: ./backend
-    container_name: anythink-backend
+    container_name: anythink-backend-python
     command: >
       sh -c "cd backend &&
             poetry install &&
@@ -20,7 +20,7 @@ services:
       - APP_ENV=dev
       - SECRET_KEY=secret
       - DEBUG=True
-      - DATABASE_URL=postgresql://postgres:@postgres:5432/anythink-market
+      - DATABASE_URL=postgresql://postgres:@postgres:5432/anythink-market-python
     depends_on:
       - "postgres"
 
@@ -46,8 +46,9 @@ services:
       driver: none
     environment:
       POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: anythink-market
+      POSTGRES_DB: anythink-market-python
     volumes:
       - ~/postgres/data:/data/db
     ports:
